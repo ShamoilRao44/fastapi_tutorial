@@ -5,6 +5,11 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+my_posts = [
+    {"title":"post 1", "content":"Content of post 1", "id": 1},
+    {"title":"post 2", "content":"Content of post 2", "id": 2},
+    ]
+
 class Post(BaseModel):
     title: str
     content: str
@@ -13,20 +18,15 @@ class Post(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "My name is Shamoil Rao."}
+    return {"message": "This is a social media application"}
 
 @app.get("/posts")
 async def get_posts():
-    return {"data":"These are all the posts."}
+    return {"data": my_posts}
 
-@app.post("/createposts")
+@app.post("/posts")
 async def create_post(post: Post):
     return {
         "msg":"post created successfully.", 
-        "data": {
-            "title": post.title, 
-            "content": post.content,
-            "rating": post.rating,
-            "published": post.published
-            }
+        "data": post
         }
