@@ -26,3 +26,8 @@ lesson 11:
 - import status from fstapi to assign proper status codes to exception and  responses, this class stores all the diferent status codes so we dont have to remember what is for what.
 - if a new api lets say @app.get("/posts/latest") is to be defined thei should be defined above this @app.get("/posts/{id}") api because otherwise python will the frist api and hence latest would be taken as path parmaeter {id}. which will then generate error because latest cant be converted to int.
 ---------------------------------------------------------------------------------------------------------
+
+lesson 12:
+- write api for deleting a post with path paramter id.
+- we give a status code parameter in decorator in order to change the default status code which is 200 OK, which should not be returned in case of a delete api
+---------------------------------------------------------------------------------------------------------
