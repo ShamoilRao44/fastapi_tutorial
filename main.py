@@ -1,5 +1,4 @@
-from fastapi import FastAPI
-from fastapi.params import Body
+from fastapi import FastAPI, Response, status, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 from random import randrange
@@ -18,6 +17,12 @@ class Post(BaseModel):
     published: bool = True
     rating: Optional[float] = None
 
+def findPost(id:int):
+    for p in my_posts:
+        if p["id"] == id:
+            return p
+
+
 @app.get("/")
 async def root():
     return {"message": "This is a social media application"}
@@ -34,4 +39,19 @@ async def create_post(post: Post):
     return {
         "msg":"post created successfully.", 
         "data": post_dict #return post_dict
+        }
+
+@app.get("/posts/{id}")
+async def get_single_post(id:int, response:Response):
+    print(id)
+    post = findPost(id)
+
+    if not post:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post not found")
+        # response.status_code = status.HTTP_404_NOT_FOUND
+        # return {"detail": "Post not found"}
+    
+    return {
+        "msg":"Post fetched succesfully",
+        "data":post
         }
