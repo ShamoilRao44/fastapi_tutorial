@@ -9,3 +9,11 @@ lesson 9;
  - made an array of dictionaies to store the new post being created by api and set two default posts.
  - returned my_posts in get post api.
 --------------------------------------------------------------------------------------------------------
+
+lesson 10:
+ - in create_post function first convert the incoming request model to dictionary,
+ - import randrange from random library and use it assign a random integer between 3 to 1million to the id key of podt dictionary.
+ -append this post dictionary to my posts list.
+ return this dictionary as aresponse of create post api
+---------------------------------------------------------------------------------------------------------
+
