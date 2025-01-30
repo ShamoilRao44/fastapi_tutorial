@@ -31,3 +31,12 @@ lesson 12:
 - write api for deleting a post with path paramter id.
 - we give a status code parameter in decorator in order to change the default status code which is 200 OK, which should not be returned in case of a delete api
 ---------------------------------------------------------------------------------------------------------
+
+lesson 13:
+- write api for updating a post using http put method.
+- take id and updated post as path parameters.
+- find the index of post with given id.
+- convert incoming post in dict.
+- set id parameter of this dict to incoming id because in incoming post there won't be a id parameter.
+- replace post at index with this new dict
+---------------------------------------------------------------------------------------------------------

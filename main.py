@@ -36,7 +36,7 @@ async def root():
 async def get_posts():
     return {"data": my_posts}
 
-@app.post("/posts")
+@app.post("/posts", status_code=status.HTTP_201_CREATED)
 async def create_post(post: Post):
     post_dict = post.model_dump() #Convert model into dictionary.
     post_dict['id'] = randrange(3,1000000) #Add a key named id and assign it a random integer between 3 and 1 million.
@@ -48,11 +48,13 @@ async def create_post(post: Post):
 
 @app.get("/posts/{id}")
 async def get_single_post(id:int, response:Response):
-    print(id)
     post = findPost(id)
 
     if not post:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail="Post not found"
+            )
         # response.status_code = status.HTTP_404_NOT_FOUND
         # return {"detail": "Post not found"}
     
@@ -66,8 +68,30 @@ async def delete_post(id:int):
     index = indexOfPost(id)
 
     if index == None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"The post with id {id} does not exist!")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail=f"The post with id {id} does not exist!"
+            )
         
     my_posts.pop(index)
 
     return 
+
+@app.put("/posts/{id}")
+async def update_post(id:int, post:Post):
+    index = indexOfPost(id)
+
+    if index == None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail=f"The post with id {id} does not exist!"
+            )
+    
+    post_dict = post.model_dump()
+    post_dict['id'] = id
+    my_posts[index] = post_dict
+
+    return {
+        "msg":"Post updated successfully",
+        "data":my_posts[index]
+    }
