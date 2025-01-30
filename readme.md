@@ -40,3 +40,9 @@ lesson 13:
 - set id parameter of this dict to incoming id because in incoming post there won't be a id parameter.
 - replace post at index with this new dict
 ---------------------------------------------------------------------------------------------------------
+
+lesson 14:
+- restructure code by making a folder named app and first make a file in it named "__init__.py" which will make thisfolder a python package.
+- now move yor mai file in app folder.
+- the command for running the main should now be "uvicorn app.main:app --reload".
+---------------------------------------------------------------------------------------------------------
