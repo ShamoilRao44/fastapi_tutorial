@@ -46,3 +46,13 @@ lesson 14:
 - now move yor mai file in app folder.
 - the command for running the main should now be "uvicorn app.main:app --reload".
 ---------------------------------------------------------------------------------------------------------
+
+lesson 17:
+-install psycopg2
+-import psycopg2 and realdictcursor from psycopg2.extras.
+-use try and except block for connecting to database.
+-realdictcursor is used so that the returned values form databse is mapped withh column name and not
+just the values
+-analyze code changes to understand how queries are being run.
+-we directly do not put input parmeters in queries but rather use %s to safeguard from SQL injection attacks.
+---------------------------------------------------------------------------------------------------------
