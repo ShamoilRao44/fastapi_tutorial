@@ -65,3 +65,9 @@ lesson 19:
 -added ceated_at attribute i post class of model.py.
 -used sqlalchemy in get all posts
 ---------------------------------------------------------------------------------------------------------
+
+lesson 20:
+-create post changed to use sqlalchemy. 
+-here **post.model_dump() is used to convert incoming post variable first into a dictionary and then ** is going to convert it into like this models.Post(title = post.title, content = post.content and so on).
+-refresh funtion is used as an equivalent of returning* statement of sql in order to return new created entries.
+---------------------------------------------------------------------------------------------------------

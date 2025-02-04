@@ -41,14 +41,18 @@ async def get_posts(db: Session=Depends(get_db)):
     return {"data": posts}
 
 @app.post("/posts", status_code=status.HTTP_201_CREATED)
-async def create_post(post: Post):
-    cursor.execute("""INSERT INTO posts(title, content, published) VALUES (%s,%s,%s) RETURNING *""",
-                   (post.title,post.content, post.published))
-    post=cursor.fetchone()
-    conn.commit()
+async def create_post(post: Post, db:Session=Depends(get_db)):
+    # cursor.execute("""INSERT INTO posts(title, content, published) VALUES (%s,%s,%s) RETURNING *""",
+    #                (post.title,post.content, post.published))
+    # post=cursor.fetchone()
+    # conn.commit()
+    new_post = models.Post(**post.model_dump())
+    db.add(new_post)
+    db.commit()
+    db.refresh(new_post)
     return {
         "msg":"post created successfully.", 
-        "data": post #return post_dict
+        "data": new_post #return post_dict
         }
 
 @app.get("/posts/{id}")
