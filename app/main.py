@@ -1,11 +1,12 @@
-from fastapi import FastAPI, Response, status, HTTPException
+from fastapi import Depends, FastAPI, Response, status, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 from random import randrange
 import psycopg2
 from psycopg2.extras import RealDictCursor
+from sqlalchemy.orm import Session
 from . import models
-from .database import engine
+from .database import engine, get_db
 
 models.Base.metadata.create_all(bind = engine)
 
@@ -31,9 +32,11 @@ async def root():
     return {"message": "This is a social media application"}
 
 @app.get("/posts")
-async def get_posts():
-    cursor.execute("""Select * from posts order by post_id;""")
-    posts = cursor.fetchall()
+async def get_posts(db: Session=Depends(get_db)):
+    # cursor.execute("""Select * from posts order by post_id;""")
+    # posts = cursor.fetchall()
+
+    posts = db.query(models.Post).all()
 
     return {"data": posts}
 

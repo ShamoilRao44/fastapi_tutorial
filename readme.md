@@ -59,4 +59,9 @@ just the values
 
 lesson 18:
 -install sqlalchemy, which is a ORM(object relational mapper). an ORM is an interface between backend code and database. it give built in languge functions(python methods in our case) to interactt with database. It makes the use of a database driver like psycopg2, in order to interact with database though.
--
+---------------------------------------------------------------------------------------------------------
+
+lesson 19:
+-added ceated_at attribute i post class of model.py.
+-used sqlalchemy in get all posts
+---------------------------------------------------------------------------------------------------------
