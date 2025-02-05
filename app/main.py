@@ -79,6 +79,18 @@ async def update_post(id:int, post:schemas.CreateUpdatePost, db:Session = Depend
 
     return postQuery.first()
 
+@app.post("/users", status_code=status.HTTP_201_CREATED, response_model=schemas.UserResponse)
+def createUser(user:schemas.CreateUser, db:Session=Depends(get_db)):
+
+    user.password =utils.appHash(user.password)
+
+    newUser = models.User(**user.model_dump())
+    db.add(newUser)
+    db.commit()
+    db.refresh(newUser)
+
+    return newUser
+
 @app.get("/users", status_code=status.HTTP_200_OK, response_model=List[schemas.UserResponse])
 def fetchAllUsers(db: Session=Depends(get_db)):
 
@@ -86,14 +98,15 @@ def fetchAllUsers(db: Session=Depends(get_db)):
 
     return users
 
-@app.post("/users", status_code=status.HTTP_201_CREATED, response_model=schemas.UserResponse)
-def createUser(user:schemas.CreateUser, db:Session=Depends(get_db)):
+@app.get("/users/{id}", status_code=status.HTTP_200_OK, response_model=schemas.UserResponse)
+def fetchSingleUser(id: int, db:Session=Depends(get_db)):
+    user = db.query(models.User).filter(models.User.u_id == id).first()
 
-    user.password =utils.appHash(user.password)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='User does not Exist'
+        )
     
-    newUser = models.User(**user.model_dump())
-    db.add(newUser)
-    db.commit()
-    db.refresh(newUser)
-
-    return newUser
+    return user
+    

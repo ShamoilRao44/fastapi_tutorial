@@ -85,3 +85,7 @@ lesson 22:
 -creted utils file for storing utility functions.
 -created appHash function to perform hashing. here bcrypt is algorith of hashing and passlib is the library.
 ---------------------------------------------------------------------------------------------------------
+
+lesson 23:
+-creted api for fetching one user.
+---------------------------------------------------------------------------------------------------------
