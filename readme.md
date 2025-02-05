@@ -71,3 +71,8 @@ lesson 20:
 -here **post.model_dump() is used to convert incoming post variable first into a dictionary and then ** is going to convert it into like this models.Post(title = post.title, content = post.content and so on).
 -refresh funtion is used as an equivalent of returning* statement of sql in order to return new created entries.
 ---------------------------------------------------------------------------------------------------------
+
+lesson 21:
+-made schemas.py and declared schemas for input and output of api to user. So basically models are used to define data between fastapi and database while schemas are used to define data between user and fast api.
+made code changes for input schemas and output schema in main.py
+---------------------------------------------------------------------------------------------------------
