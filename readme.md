@@ -76,3 +76,12 @@ lesson 21:
 -made schemas.py and declared schemas for input and output of api to user. So basically models are used to define data between fastapi and database while schemas are used to define data between user and fast api.
 made code changes for input schemas and output schema in main.py
 ---------------------------------------------------------------------------------------------------------
+
+lesson 22:
+-created yser functionalitis by creating model for users table
+-made two schemas for request and response api concerning user.
+-made two apis for creting and fetching all users
+-installed "passlib[bcrypt]" for hashing the password
+-creted utils file for storing utility functions.
+-created appHash function to perform hashing. here bcrypt is algorith of hashing and passlib is the library.
+---------------------------------------------------------------------------------------------------------
