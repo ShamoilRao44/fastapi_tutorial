@@ -1,3 +1,9 @@
+lesson 26:
+-user login functionality. Used verify function to compare incoming pasword string with databse stored hash.
+-implemented oauth2 standard based authentication using jwt token. refer code changes and word file to understand how jwt token is being created and returned.
+-used userlogin schema for incoming login details (for now).
+---------------------------------------------------------------------------------------------------------
+
 lesson 24:
 -created routers folder to keep router functions seperate.
 -used APIRouters for fastapi to accoumplish routing.
